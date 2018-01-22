@@ -2,7 +2,7 @@
   <h1>Welcome back, <%= @user.name %></h1>
   <div class="user_options">
     <%= button_to "Create a Task", new_task_path, method: :get %>
-    <%= button_to "Claim a Task", tasks_path, method: :get %>
+    <%= button_to "Claim a Task", categories_path, method: :get %>
     <%= button_to "Edit Your Info", edit_user_path(@user), method: :get %>
     <%= button_to "Delete Account", @user, method: :delete %>
   </div>
@@ -31,16 +31,14 @@
     <div class="user_show_box">
       <h2>Pending Tasks</h2>
         <ul>
-          <% if @user.tasks.empty? %>
-            <li class="task_title">No current tasks</li>
-          <% else %>
-            <% @user.tasks.each do |task| %>
-              <li class="task_title"><%= link_to task.title, task_path(task) %></li>
-                <ul>
-                  <li class="task_detail">(Created: <%= task.created_at.strftime("%B %-d, %Y") %>)</li>
-                </ul>
+          <% @job = @user.tasks.select { |task| !task.cheetah } %>
+            <% if @job.empty? %>
+              <li class="task_title">No Current Tasks Pending</li>
+            <% else %>
+              <% @job.each do |completed_task| %>
+                <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
+              <% end %>
             <% end %>
-          <% end %>
         </ul>
       </div>
     </div>
@@ -49,17 +47,14 @@
       <div class="user_show_box">
         <h2>Review Tasks</h2>
           <ul>
-            <% if @user.cats.empty? %>
-              <li class="task_title">No Tasks to Review</li>
-            <% else %>
-                <% @user.cats.each do |cat| %>
-                  <% @job = Task.find_by(id: cat.id) %>
-                  <li class="task_title"><%= link_to @job.title, task_path(@job)%></li>
-                    <ul>
-                      <li class="task_detail">(Created: <%= @job.created_at.strftime("%B %-d, %Y") %>)</li>
-                    </ul>
+            <% @job = @user.tasks.select { |task| task.snake } %>
+              <% if @job.empty? %>
+                <li class="task_title">No Tasks to Review</li>
+              <% else %>
+                <% @job.each do |completed_task| %>
+                  <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
                 <% end %>
-            <% end %>
+              <% end %>
           </ul>
       </div>
 

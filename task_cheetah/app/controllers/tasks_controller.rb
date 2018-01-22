@@ -27,6 +27,23 @@ class TasksController < ApplicationController
     end
   end
 
+  def claim
+    @task = Task.find(params[:id])
+    @task.update(cheetah: true)
+    @user = User.find_by(id: session[:user_id])
+    @job = @user.jobs.build(cheetah_id: @user.id, task_id: @task.id)
+    @job.save
+    redirect_to user_path(@user)
+  end
+
+  def approval
+    byebug
+    @task = Task.find(params[:id])
+    @task.update(snake: true)
+    @user = User.find_by(id: session[:user_id])
+    redirect_to user_path(@user)
+  end
+
   ### Edit Task and mark complete
   def edit
 
