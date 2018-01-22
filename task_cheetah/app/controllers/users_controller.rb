@@ -3,8 +3,16 @@ class UsersController < ApplicationController
 
 ### WHERE A USER - ONCE LOGGED IN SEES THEIR Jobs(CATS - user.cats)
   def show
-    @user = User.find(params[:id])
-    @tasks = Task.all
+    #Claimed task data
+    @user_claim_job = @user.cats.select { |cat| !cat.task.rabbit }
+    @user_claim = @user_claim_job.map { |cat| cat.task }
+
+    #Pending Tasks
+    @pending_task = @user.tasks.select { |task| !task.cheetah }
+
+    #Review Tasks
+    @review_task = @user.tasks.select { |task| task.cheetah && task.rabbit == false }
+
   end
 
 
@@ -26,15 +34,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     @user.update(user_params)
 
     if @user.valid?
-      session[:user_id] = @user.id
       redirect_to @user
     else
       flash[:errors] = @user.errors.full_messages

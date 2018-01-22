@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :find_task, only: [:claim, :approval, :completed]
 
 
   ### Shows a specific task and description
@@ -15,7 +16,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    @user = User.find_by(id: session[:user_id])
     @task = @user.tasks.build(task_params)
     # @task = Task.create(task_params)
     @categories = Category.all
@@ -23,30 +23,24 @@ class TasksController < ApplicationController
 
     if @task.valid?
       @task.save
-      redirect_to @task
+      redirect_to user_path(@user)
     else
       render :new
     end
   end
 
   def claim
-    @task = Task.find(params[:id])
-    @user = User.find_by(id: session[:user_id])
     @job = @user.jobs.build(cheetah_id: @user.id, task_id: @task.id)
     @job.save
     redirect_to user_path(@user)
   end
 
   def approval
-    @task = Task.find(params[:id])
     @task.update(cheetah: true)
-    @user = User.find_by(id: session[:user_id])
     redirect_to user_path(@user)
   end
 
   def completed
-    @task = Task.find(params[:id])
-    @user = User.find_by(id: session[:user_id])
     @task.update(rabbit: true)
     redirect_to user_path(@user)
   end
@@ -69,6 +63,10 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :description, category_ids: [])
+  end
+
+  def find_task
+    @task = Task.find(params[:id])
   end
 
 

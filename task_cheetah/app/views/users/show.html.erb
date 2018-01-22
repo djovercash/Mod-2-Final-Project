@@ -4,7 +4,7 @@
     <%= button_to "Create a Task", new_task_path, method: :get %>
     <%= button_to "Claim a Task", categories_path, method: :get %>
     <%= button_to "Edit Your Info", edit_user_path(@user), method: :get %>
-    <%= button_to "Delete Account", @user, method: :delete %>
+    <%= button_to "Logout", logout_path %>
   </div>
 
   <br>
@@ -12,18 +12,16 @@
     <div class="user_show_box">
       <h2>Claimed Tasks</h2>
         <ul>
-          <% @job = @user.cats.select { |cat| !cat.task.rabbit } %>
-          <% @user_task = @job.map { |cat| cat.task } %>
-            <% if @user_task.empty? %>
-              <li class="task_title">No Current Tasks Pending</li>
-            <% else %>
-              <% @user_task.each do |completed_task| %>
-                <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
-                  <ul>
-                    <li class="task_detail">(Created: <%= completed_task.created_at.strftime("%B %-d, %Y") %>)</li>
-                  </ul>
-              <% end %>
+          <% if @user_claim.empty? %>
+            <li class="task_title">No Current Tasks Pending</li>
+          <% else %>
+            <% @user_claim.each do |completed_task| %>
+              <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
+                <ul>
+                  <li class="task_detail">(Created: <%= completed_task.created_at.strftime("%B %-d, %Y") %>)</li>
+                </ul>
             <% end %>
+          <% end %>
         </ul>
     </div>
 
@@ -32,17 +30,16 @@
     <div class="user_show_box">
       <h2>Pending Tasks</h2>
         <ul>
-          <% @job = @user.tasks.select { |task| !task.cheetah } %>
-            <% if @job.empty? %>
-              <li class="task_title">No Current Tasks Pending</li>
-            <% else %>
-              <% @job.each do |completed_task| %>
-                <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
-                  <ul>
-                    <li class="task_detail">(Created: <%= completed_task.created_at.strftime("%B %-d, %Y") %>)</li>
-                  </ul>
+          <% if @pending_task.empty? %>
+            <li class="task_title">No Current Tasks Pending</li>
+          <% else %>
+            <% @pending_task.each do |completed_task| %>
+              <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
+                <ul>
+                  <li class="task_detail">(Created: <%= completed_task.created_at.strftime("%B %-d, %Y") %>)</li>
+                </ul>
               <% end %>
-            <% end %>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -51,14 +48,13 @@
       <div class="user_show_box">
         <h2>Review Tasks</h2>
           <ul>
-            <% @job = @user.tasks.select { |task| task.cheetah && task.rabbit == false } %>
-              <% if @job.empty? %>
-                <li class="task_title">No Tasks to Review</li>
-              <% else %>
-                <% @job.each do |completed_task| %>
-                  <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
-                <% end %>
+            <% if @review_task.empty? %>
+              <li class="task_title">No Tasks to Review</li>
+            <% else %>
+              <% @review_task.each do |completed_task| %>
+                <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
               <% end %>
+            <% end %>
           </ul>
       </div>
 
@@ -67,9 +63,6 @@
       <div class="user_show_box">
         <h2>Cheetah Status</h2>
 
-      </div>
-      <div class="log_out_button">
-        <%= button_to "Logout", logout_path %>
       </div>
 
 </div>
