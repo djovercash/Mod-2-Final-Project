@@ -13,11 +13,15 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
+    @user = User.find_by(id: session[:user_id])
+    @task = @user.tasks.build(task_params)
+    # @task = Task.create(task_params)
     @categories = Category.all
 
-    if @task.save
-      redirect_to task_path(@task)
+
+    if @task.valid?
+      @task.save
+      redirect_to @task
     else
       render :new
     end
@@ -40,7 +44,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :snake_id, category_ids: [])
+    params.require(:task).permit(:title, :description, category_ids: [])
   end
 
 
