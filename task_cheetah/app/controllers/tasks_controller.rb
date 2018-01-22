@@ -4,6 +4,8 @@ class TasksController < ApplicationController
   ### Shows a specific task and description
   def show
     @task = Task.find(params[:id])
+    @test = Job.exists?(task_id: @task.id)
+    @jobs = Job.find_by(task_id: @task.id)
   end
 
   ### Create new tasks
@@ -29,7 +31,6 @@ class TasksController < ApplicationController
 
   def claim
     @task = Task.find(params[:id])
-    @task.update(cheetah: true)
     @user = User.find_by(id: session[:user_id])
     @job = @user.jobs.build(cheetah_id: @user.id, task_id: @task.id)
     @job.save
@@ -37,10 +38,16 @@ class TasksController < ApplicationController
   end
 
   def approval
-    byebug
     @task = Task.find(params[:id])
-    @task.update(snake: true)
+    @task.update(cheetah: true)
     @user = User.find_by(id: session[:user_id])
+    redirect_to user_path(@user)
+  end
+
+  def completed
+    @task = Task.find(params[:id])
+    @user = User.find_by(id: session[:user_id])
+    @task.update(rabbit: true)
     redirect_to user_path(@user)
   end
 

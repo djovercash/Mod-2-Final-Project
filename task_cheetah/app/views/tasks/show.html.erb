@@ -2,8 +2,12 @@
   <h1><%= @task.title %></h1><br>
   <h3>Description: <%= @task.description %></h3>
 
-  <% if @task.cheetah %>
+  <% if @test && @task.cheetah == false %>
     <%= button_to "Submit Task for approval?", approval_task_path %>
+  <% elsif @test && @task.cheetah == true && session[:user_id] == @task.snake_id%>
+    <%= button_to "Mark Completed", completed_task_path %>
+  <% elsif @test && @task.cheetah == true && session[:user_id] != @task.snake_id%>
+    <h3>Waiting for Approval</h3>
   <% else %>
     <%= button_to "Would you like to claim this task?", claim_task_path %>
   <% end %>
