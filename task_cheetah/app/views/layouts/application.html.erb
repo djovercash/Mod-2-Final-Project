@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskCheetah</title>
+    <title>Cheetah Run</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- HEADER SECTION - CONSTANT -->
+    <header class="container">
+      <div class="header">
+        <div class="headerLogo">
+          <img src="http://www.freepngimg.com/download/cheetah/3-2-cheetah-free-png-image.png" />
+          <h5>Cheetah Run</h5>
+        </div>
+        <div class="headerMission">
+          <h5>Everything possible in the blink of an eye</h5>
+        </div>
+      </div>
+    </header>
+
+    <div class="mainSection">
+      <%= yield %>
+    </div>
   </body>
 </html>

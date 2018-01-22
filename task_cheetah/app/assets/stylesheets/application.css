@@ -13,3 +13,125 @@
  *= require_tree .
  *= require_self
  */
+
+ html {
+   font-size: 18px;
+   line-height: 1.4;
+   font-family: Helvetica;
+   background-image: url("http://ak1.picdn.net/shutterstock/videos/1488331/thumb/1.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
+ .container {
+   max-width: 960px;
+   margin: 0 auto;
+ }
+
+ /* Header Section */
+ .header {
+   display: flex;
+   position: absolute;
+   width: 960px;
+   margin-top: 1rem;
+   justify-content: space-between;
+   background-color: rgba(0, 150, 150, 0.5);
+   color: rgb(255, 255, 255);
+   font-size: 1rem;
+   z-index: 10;
+ }
+
+ .headerLogo {
+   display: flex;
+   align-items: center;
+ }
+
+ .headerLogo img {
+   height: 1.5rem;
+   padding-left: 2rem;
+   padding-right: .5rem;
+ }
+
+ .headerMission {
+   display: flex;
+   padding: 1rem 2rem;
+ }
+
+ /* MAIN SECTION FOR ALL PAGES */
+ .mainSection {
+   display: flex;
+   position: absolute;
+   justify-content: space-around;
+   margin-top: 5rem;
+   margin-left: 25%;
+   margin-right: 25%;
+   width: 50%;
+   padding: 10px;
+   border: 3px solid rgb(0, 153, 0);
+   background-color: rgba(255, 253, 210, 0.7)
+ }
+
+ /* WELCOME SCREEN */
+
+ .welcome_form {
+   display: inline-block;
+   align-content: space-around;
+   text-align: center;
+ }
+
+
+ /* USER SHOW */
+ .user_show {
+   display: inline;
+   text-align: center;
+   width: 100%;
+   padding: 0px;
+   margin: 0px;
+ }
+
+ .user_show h1 {
+   display: block;
+   font-size: 2rem;
+   text-decoration: underline;
+   font-weight: bold;
+   text-shadow: 2px 2px 8px rgb(0, 150, 150);
+ }
+
+ .user_show h2 {
+   font-size: 1.25rem;
+   text-decoration: underline;
+   font-weight: bold;
+   text-shadow: 1px 1px 2px rgb(0, 150, 150);
+ }
+
+ .user_show_boxes {
+   display: flex;
+   justify-content: space-around;
+   margin-top: 1rem;
+ }
+
+ .task_title{
+   padding-top: .3rem;
+ }
+
+ .task_detail {
+   font-size: .75rem;
+ }
+
+ .user_options {
+   display: flex;
+   justify-content: center;
+ }
+
+ /* CATEGORIES */
+ .category_breakdown {
+   display: inline;
+ }
+
+ .category_breakdown h1 {
+   display: block;
+   font-size: 2rem;
+   text-decoration: underline;
+   font-weight: bold;
+   text-shadow: 2px 2px 8px rgb(0, 150, 150);
+ }

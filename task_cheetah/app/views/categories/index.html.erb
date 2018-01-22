@@ -1,0 +1,11 @@
+<div class="category_breakdown">
+  <h1>Claim a Task Based On a Category</h1><br><br>
+  <% @categories.each do |category| %>
+    <h3><%= link_to category.name, category_path(category) %></h3><br>
+      <ul>
+        <% category.tasks.each do |task| %><br>
+          <li><%= link_to task.title, task_path(task) %></li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
