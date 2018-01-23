@@ -128,8 +128,13 @@
    display: inline;
  }
 
+ .category_selection {
+   display: flex;
+   justify-content: space-around;
+ }
+
  .category_breakdown h1 {
-   display: block;
+   display: inline;
    font-size: 2rem;
    text-decoration: underline;
    font-weight: bold;
@@ -150,31 +155,35 @@
 
 
  /* FOOTER */
- footer {
+ .footer {
    display: flex;
    position: absolute;
-   margin-top: 75%;
    padding: 0.5rem 0.5rem;
    flex-direction: row;
    justify-content: space-between;
+   bottom: 5%;
+   width: 50%;
+   margin-left: 25%;
+   margin-right: 25%;
    background-color: rgb(0, 150, 150);
    color: rgb(255, 255, 255);
    font-size: 1rem;
+   align-items: center;
  }
 
  .socialMediaMobile {
    display: none;
  }
 
- footer nav {
+ .footer nav {
    display: flex;
  }
 
- footer nav ul {
+ .footer nav ul {
    display: flex;
    flex-direction: row;
  }
 
- footer nav ul li:first-child {
+ .footer nav ul li:first-child {
    margin-right: 16px;
  }

@@ -62,7 +62,13 @@
 
       <div class="user_show_box">
         <h2>Cheetah Status</h2>
-
+          <% if @cheetah_status == "Complete tasks to earn Cheetah Points" %>
+            <%= @cheetah_status %>
+          <% else %>
+            Cheetah Status: <%= @cheetah_status[0] %><br>
+            Cheetah Rating: <%= @cheetah_status[1] %>
+          <% end %>
       </div>
+    </div>
 
 </div>

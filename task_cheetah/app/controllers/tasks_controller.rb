@@ -41,7 +41,7 @@ class TasksController < ApplicationController
   end
 
   def completed
-    @task.update(rabbit: true)
+    @task.update(rabbit: true, rating: params[:task][:rating])
     redirect_to user_path(@user)
   end
 

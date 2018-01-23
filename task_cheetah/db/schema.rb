@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180119200959) do
     t.integer "snake_id"
     t.boolean "cheetah", default: false
     t.boolean "rabbit", default: false
-    t.boolean "complete", default: false
+    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

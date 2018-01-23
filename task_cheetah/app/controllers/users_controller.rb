@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     #Review Tasks
     @review_task = @user.tasks.select { |task| task.cheetah && task.rabbit == false }
 
+    #cheetah status
+
+    @cheetah_status = @user.cheetah_status
+
   end
 
 
@@ -28,7 +32,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user
     else
-      
+
       flash[:errors] = @user.errors.full_messages
       redirect_to new_user_path
     end

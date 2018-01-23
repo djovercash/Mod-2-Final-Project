@@ -5,7 +5,11 @@
   <% if @test && @task.cheetah == false %>
     <%= button_to "Submit Task for approval?", approval_task_path %>
   <% elsif @test && @task.cheetah == true && session[:user_id] == @task.snake_id%>
-    <%= button_to "Mark Completed", completed_task_path %>
+    <%= form_for @task, url: completed_task_path, method: :post do |f| %>
+      <%= f.label :rating %>
+      <%= f.number_field :rating %>
+      <%= f.submit "Mark Completed" %>
+    <% end %>
   <% elsif @test && @task.cheetah == true && session[:user_id] != @task.snake_id%>
     <h3>Waiting for Approval</h3>
   <% else %>
