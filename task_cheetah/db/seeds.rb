@@ -15,3 +15,5 @@ scrub = Task.create(title: "Toilet Scrub", description: "It look jank. Fix it.",
 poop = Task.create(title: "Whoops", description: "Clean up on aisle 4.", snake_id: 2)
 
 john.jobs.build(task_id: 1)
+
+Category.create(name: "")
