@@ -10,8 +10,7 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }, allow_nil: true
-  validates :cheetah_points, presence: true
-  validate :check_points
+  validates :cheetah_points, numericality: { greater_than_or_equal_to: 1 }
 
 
   def true_false_task
@@ -21,6 +20,14 @@ class Task < ApplicationRecord
   def check_points
     @user = User.find(self.snake_id)
     errors.add(:cheetah_points, "Not enough points to offer to this task") if cheetah_points > @user.cheetah_points
+  end
+
+  def claim_check
+    Job.cheetah_claim(self.id)
+  end
+
+  def name_check
+    Job.cheetah_name(self.id)
   end
 
 end

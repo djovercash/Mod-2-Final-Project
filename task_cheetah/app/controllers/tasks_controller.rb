@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   def completed
     @task.update(rabbit: true, rating: params[:task][:rating])
     if @task.valid?
-      @user.update(cheetah_points: (@user.cheetah_points + @task.cheetah_points))
+      @task.jobs[0].cheetah.update(cheetah_points: (@task.jobs[0].cheetah.cheetah_points + @task.cheetah_points))
       redirect_to user_path(@user)
     else
       flash[:errors] = @task.errors.full_messages
