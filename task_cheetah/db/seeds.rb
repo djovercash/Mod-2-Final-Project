@@ -24,11 +24,11 @@ yard = Category.create(name: "Yard Work")
 food = Category.create(name: "Food & Beverage")
 misc = Category.create(name: "Miscellaneous")
 
-bathroom = Task.create(title: "Bathroom Explosion", description: "Pipes burst. Help Help Help!", snake_id: 1)
-wine = Task.create(title: "Wine Please", description: "I had a rough day. Please make it better with some Risling.", snake_id: 2)
-fan = Task.create(title: "Ceiling Fan Installation", description: "Gurl, it is hot. Fix it with my ceiling fan.", snake_id: 6)
-move = Task.create(title: "Gotta get out!", description: "Moving to UWS and need help packing and moving ASAP", snake_id: 3)
-grass = Task.create(title: "Grass be out of control", description: "Please mow my lawn. PLEASE!!!", snake_id: 4)
+bathroom = Task.create(title: "Bathroom Explosion", description: "Pipes burst. Help Help Help!", snake_id: 1, cheetah_points: 20)
+wine = Task.create(title: "Wine Please", description: "I had a rough day. Please make it better with some Risling.", snake_id: 2, cheetah_points: 20)
+fan = Task.create(title: "Ceiling Fan Installation", description: "Gurl, it is hot. Fix it with my ceiling fan.", snake_id: 6, cheetah_points: 20)
+move = Task.create(title: "Gotta get out!", description: "Moving to UWS and need help packing and moving ASAP", snake_id: 3, cheetah_points: 20)
+grass = Task.create(title: "Grass be out of control", description: "Please mow my lawn. PLEASE!!!", snake_id: 4, cheetah_points: 20)
 
 handy.tasks << bathroom
 food.tasks << wine

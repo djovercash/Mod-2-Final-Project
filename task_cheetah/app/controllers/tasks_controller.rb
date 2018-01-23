@@ -17,13 +17,16 @@ class TasksController < ApplicationController
   end
 
   def create
+    @user = User.find_by(id: session[:user_id])
     @task = @user.tasks.build(task_params)
     @categories = Category.all
 
     if @task.valid?
       @task.save
+      @user.update(cheetah_points: (@user.cheetah_points - @task.cheetah_points))
       redirect_to user_path(@user)
     else
+      flash[:errors] = @task.errors.full_messages
       render :new
     end
   end
@@ -42,6 +45,7 @@ class TasksController < ApplicationController
   def completed
     @task.update(rabbit: true, rating: params[:task][:rating])
     if @task.valid?
+      @user.update(cheetah_points: (@user.cheetah_points + @task.cheetah_points))
       redirect_to user_path(@user)
     else
       flash[:errors] = @task.errors.full_messages
@@ -73,7 +77,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, category_ids: [])
+    params.require(:task).permit(:title, :description, :cheetah_points, category_ids: [])
   end
 
   def find_task

@@ -38,9 +38,10 @@ ActiveRecord::Schema.define(version: 20180119200959) do
     t.string "title"
     t.string "description"
     t.integer "snake_id"
+    t.integer "rating"
+    t.integer "cheetah_points"
     t.boolean "cheetah", default: false
     t.boolean "rabbit", default: false
-    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20180119200959) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
+    t.integer "cheetah_points", default: 1000
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

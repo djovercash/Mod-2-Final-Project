@@ -6,13 +6,13 @@ class User < ApplicationRecord
 
   # validation methods --------------------
   validates :name, presence: true
-  validates :password_confirmation, presence: true
   validates :username, presence: true, uniqueness: true
   validate :check_name_and_password
 
   def check_name_and_password
     errors.add(:password, "can't be the same as name or username") if name == password || username == password
   end
+
 
   # Instance methods -----------------------------
   def cheetah_status
