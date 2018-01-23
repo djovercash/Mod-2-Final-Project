@@ -1,0 +1,18 @@
+<div class="edit_task_form">
+  <h1>Edit <%= @task.title %></h1><br>
+  <%= render "errors/error_messages" %><br>
+  <%= form_for @task, controller: 'tasks', action: 'create' do |f| %>
+    <%= f.label :title, "Task Title: " %>
+    <%= f.text_field :title %><br><br>
+
+    <%= f.label :description, "Task Description: " %>
+    <%= f.text_field :description %><br><br>
+
+    <%= f.hidden_field :snake_id, :value => session[:user_id] %>
+
+    <%= f.label "Select Categories:" %><br><br>
+      <%= f.collection_check_boxes :category_ids, @categories, :id, :name  %><br><br>
+
+    <%= f.submit "Send to the Cheetahs" %>
+  <% end %>
+</div>

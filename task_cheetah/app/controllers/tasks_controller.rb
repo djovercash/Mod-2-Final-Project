@@ -1,25 +1,24 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: [:claim, :approval, :completed]
+  before_action :find_task, only: [:claim, :approval, :completed, :edit, :update, :show]
+
+
 
 
   ### Shows a specific task and description
   def show
-    @task = Task.find(params[:id])
     @test = Job.exists?(task_id: @task.id)
     @jobs = Job.find_by(task_id: @task.id)
   end
 
   ### Create new tasks
   def new
-    @task = Task.new
+    @task = Task.new(category_ids: ["8"])
     @categories = Category.all
   end
 
   def create
     @task = @user.tasks.build(task_params)
-    # @task = Task.create(task_params)
     @categories = Category.all
-
 
     if @task.valid?
       @task.save
@@ -42,16 +41,28 @@ class TasksController < ApplicationController
 
   def completed
     @task.update(rabbit: true, rating: params[:task][:rating])
-    redirect_to user_path(@user)
+    if @task.valid?
+      redirect_to user_path(@user)
+    else
+      flash[:errors] = @task.errors.full_messages
+      redirect_to task_path(@task)
+    end
   end
 
   ### Edit Task and mark complete
   def edit
-
+    @categories = Category.all
   end
 
   def update
+    @task.update(task_params)
 
+    if @task.valid?
+      redirect_to user_path(@user)
+    else
+      flash[:errors] = @task.errors.full_messages
+      redirect_to edit_task_path(@task)
+    end
   end
 
   ### User destroy option

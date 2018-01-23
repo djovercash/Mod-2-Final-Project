@@ -1,13 +1,16 @@
 <div class="welcome_form">
   <h1>Welcome to Cheetah Run! Please sign in below:</h1><br>
+  <%= render "errors/error_messages" %><br><br>
   <%= form_for @user, url: login_path, method: :post do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :username, "Username: " %>
+    <%= f.text_field :username %><br>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.label :password, "Password: " %>
+    <%= f.password_field :password %><br>
 
-    <%= f.submit "log in" %><br><br>
-    <h1>Or Sign up and join the pride! <%= link_to(controller: 'users', action: 'new') { 'sign up' } %></h1>
+    <%= f.submit "Go Wild" %><br><br>
   <% end %>
+
+  <h1>Not a member yet? No problem.</h1>
+  <%= link_to "Become a Cheetah", new_user_path, method: :get%>
 </div>

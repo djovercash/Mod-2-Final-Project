@@ -4,9 +4,17 @@ class User < ApplicationRecord
   has_many :jobs, :through => :tasks
   has_many :cats, :foreign_key => 'cheetah_id', :class_name => "Job"
 
+  # validation methods --------------------
   validates :name, presence: true
+  validates :password_confirmation, presence: true
   validates :username, presence: true, uniqueness: true
+  validate :check_name_and_password
 
+  def check_name_and_password
+    errors.add(:password, "can't be the same as name or username") if name == password || username == password
+  end
+
+  # Instance methods -----------------------------
   def cheetah_status
     hold = self.cats.select { |cat| cat.task.rating }
     hold = hold.map { |cat| cat.task.rating }

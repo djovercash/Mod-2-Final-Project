@@ -1,6 +1,7 @@
 <div class="current_task_view">
   <h1><%= @task.title %></h1><br>
   <h3>Description: <%= @task.description %></h3>
+  <%= render "errors/error_messages" %>
 
   <% if @test && @task.cheetah == false %>
     <%= button_to "Submit Task for approval?", approval_task_path %>
@@ -14,6 +15,10 @@
     <h3>Waiting for Approval</h3>
   <% else %>
     <%= button_to "Would you like to claim this task?", claim_task_path %>
+  <% end %>
+
+  <% if session[:user_id] == @task.snake_id %>
+    <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
   <% end %>
 
 

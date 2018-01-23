@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :require_logged_in, only: [:new, :create]
+  before_action :log_out, only: [:new]
 
 
 ### WHERE A USER - ONCE LOGGED IN SEES THEIR Jobs(CATS - user.cats)
