@@ -1,7 +1,6 @@
-
-<% if flash[:error] %>
+<% if flash[:errors] %>
   <ul>
-    <% flash[:error].each do |e| %>
+    <% flash[:errors].each do |e| %>
       <li><%= e %></li>
     <% end %>
   </ul>
