@@ -26,11 +26,12 @@
     </div>
     <div class="mainSection_shout_out">
       <h1>Newest Task Created</h1>
-      <h3><%= @newest_task_name %></h3>
+      <h3><%= @newest_task.title %></h3>
+      <h4>Created by: <%= @newest_task.snake.username %></h4>
     </div>
     <div class="mainSection_shout_out">
       <h1>Top Cheetah Points</h1>
         <h3>User: <%= @top_cheetah_points.last[0] %></h3>
-        <h3>Points: <%= @top_cheetah_points.last[1] %></h3>
+        <h4>Points: <%= @top_cheetah_points.last[1] %></h4>
     </div>
   </div>

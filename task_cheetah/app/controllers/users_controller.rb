@@ -27,13 +27,7 @@ class UsersController < ApplicationController
     @top_cheetah_points = @cheetahs.sort_by{ |x, y| y}
 
     ##Newest Created Task
-    @all_tasks = Task.all
-    @tasks = []
-    @all_tasks.each do |task|
-      @tasks << [task.title, task.created_at]
-    end
-    @newest_task = @tasks.sort_by{ |x, y| y }
-    @newest_task_name = @newest_task.last[0]
+    @newest_task = Task.all.sort_by { |task| task.created_at}.last
 
     #Top Cheetah Rating
     @top_users = User.all.map {|user| [user.cheetah_status, user.username]}

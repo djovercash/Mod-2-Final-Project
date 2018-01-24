@@ -154,6 +154,18 @@
   padding: 10px;
   border: 3px solid rgb(0, 153, 0);
   background-color: rgba(255, 253, 210, 0.7);
+  text-align: center;
+}
+
+.mainSection_shout_out h3{
+  margin-top: 0.25rem;
+  font-size: 0.90rem;
+  text-shadow: 1px 1px 4px rgb(0, 150, 150);
+}
+
+.mainSection_shout_out h4 {
+  font-size: 0.75rem;
+  text-shadow: 1px 1px 4px rgb(0, 150, 150);
 }
 
  /* USER SHOW */
@@ -375,4 +387,20 @@
 .user-buttons {
   display: flex;
   margin: 0;
+}
+
+/* Edit User Form */
+.edit_user_form h1 {
+  font-size: 1.3rem;
+  text-decoration: underline;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgb(0, 150, 150);
+}
+
+.edit_user_form h3 {
+  display: inline;
+  font-size: 1rem;
+  text-decoration: underline;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgb(0, 150, 150);
 }

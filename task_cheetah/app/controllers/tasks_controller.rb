@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @task = @user.tasks.build(task_params)
     @categories = Category.all
-    
+
     if @task.check_points
       if @task.valid? && @task.check_points
         @task.save
