@@ -3,19 +3,29 @@
     <h1>Become a Cheetah and join the fastest trend in task sharing</h1><br>
     <%= render "errors/error_messages" %>
     <%= form_for @user, controller: 'users', action: 'create' do |f| %>
-      <%= f.label :name, "Name: " %>
-      <%= f.text_field :name %><br>
+      <div class="form-group">
+        <h3><%= f.label :name, "Name:" %></h3>
+        <%= f.text_field :name %><br>
+      </div>
 
-      <%= f.label :username, "Username: " %>
-      <%= f.text_field :username %><br>
+      <div class="form-group">
+        <h3><%= f.label :username, "Username:" %></h3>
+        <%= f.text_field :username %><br>
+      </div>
 
-      <%= f.label :password, "Password: " %>
-      <%= f.password_field :password %><br>
+      <div class="form-group">
+        <h3><%= f.label :password, "Password:" %></h3>
+        <%= f.password_field :password %><br>
+      </div>
 
-      <%= f.label :password_confirmation, "Password Confirmation: " %>
-      <%= f.password_field :password_confirmation %><br><br>
+      <div class="form-group">
+        <h3><%= f.label :password_confirmation, "Password Confirmation:" %></h3>
+        <%= f.password_field :password_confirmation %><br><br>
+      </div>
 
-      <%= f.submit "Become a Cheetah" %>
+      <div class="form-group">
+        <%= f.submit "Become a Cheetah" %>
+      </div>
     <% end %>
   </div>
 </div>
