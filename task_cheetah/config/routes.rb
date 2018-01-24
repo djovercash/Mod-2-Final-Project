@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :tasks
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :show]
   resources :users, except: [:index]
 
   root 'sessions#new'

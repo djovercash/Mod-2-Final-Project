@@ -18,7 +18,12 @@
           <h5>Cheetah Run</h5>
         </div>
         <div class="headerMission">
-          <h5>Everything's possible in the blink of an eye</h5>
+          <h5 class="headerPhrase">Everything's possible in the blink of an eye</h5>
+          <% if session[:user_id] %>
+            <h5><%= link_to @user.username, user_path(@user), :class => "login"%></h5>
+          <% else %>
+            <h5><%= link_to "Login", login_path, :class => "login" %></h5>
+          <% end %>
         </div>
       </div>
     </header>

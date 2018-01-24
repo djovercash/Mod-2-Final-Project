@@ -8,12 +8,15 @@
             <% if category.open_tasks.empty? %>
               <li>No tasks currently available</li>
             <% else %>
-              <% category.open_tasks.each do |task| %>
-                <li><%= link_to task.title, task_path(task) %></li>
+              <% category.open_tasks[0..1].each do |task| %>
+                <li> - <%= link_to task.title, task_path(task) %></li>
               <% end %>
             <% end %>
+            <% if category.open_tasks.length > 2 %>
+              <li> - <%= link_to "See More for #{category.name}", category_path(category) %></li>
+            <% end %>
           </ul>
-      <% end %>
+        <% end %>
     </div>
     <div class="category_right">
       <% @categories_5_8.each do |category| %>
@@ -22,9 +25,12 @@
             <% if category.open_tasks.empty? %>
               <li>No tasks currently available</li>
             <% else %>
-              <% category.open_tasks.each do |task| %>
-                <li><%= link_to task.title, task_path(task) %></li>
+              <% category.open_tasks[0..1].each do |task| %>
+                <li> - <%= link_to task.title, task_path(task) %></li>
               <% end %>
+            <% end %>
+            <% if category.open_tasks.length > 2 %>
+              <li> - <%= link_to "See More for #{category.name}", category_path(category) %></li>
             <% end %>
           </ul>
       <% end %>
