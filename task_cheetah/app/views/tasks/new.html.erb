@@ -1,21 +1,23 @@
-<div class="create_task_form">
-  <h1>Create a task</h1><br>
-  <%= render 'errors/error_messages' %>
-  <%= form_for @task, controller: 'tasks', action: 'create' do |f| %>
-    <%= f.label :title, "Task Title: " %>
-    <%= f.text_field :title %><br><br>
+<div class="mainSection">
+  <div class="create_task_form">
+    <h1>Create a task</h1><br>
+    <%= render 'errors/error_messages' %>
+    <%= form_for @task, controller: 'tasks', action: 'create' do |f| %>
+      <%= f.label :title, "Task Title: " %>
+      <%= f.text_field :title %><br><br>
 
-    <%= f.label :description, "Task Description: " %>
-    <%= f.text_field :description %><br><br>
+      <%= f.label :description, "Task Description: " %>
+      <%= f.text_field :description %><br><br>
 
-    <%= f.label :cheetah_points, "Cheetah Point Value: " %>
-    <%= f.text_field :cheetah_points %><br><br>
+      <%= f.label :cheetah_points, "Cheetah Point Value: " %>
+      <%= f.text_field :cheetah_points %><br><br>
 
-    <%= f.hidden_field :snake_id, :value => session[:user_id] %>
+      <%= f.hidden_field :snake_id, :value => session[:user_id] %>
 
-    <%= f.label "Select Categories:" %><br><br>
-      <%= f.collection_check_boxes :category_ids, @categories, :id, :name  %><br><br>
+      <%= f.label "Select Categories:" %><br><br>
+        <%= f.collection_check_boxes :category_ids, @categories, :id, :name  %><br><br>
 
-    <%= f.submit "Send to the Cheetahs" %>
-  <% end %>
+      <%= f.submit "Send to the Cheetahs" %>
+    <% end %>
+  </div>
 </div>

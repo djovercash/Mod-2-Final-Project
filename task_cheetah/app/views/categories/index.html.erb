@@ -1,39 +1,41 @@
+<div class="mainSection">
 <div class="category_breakdown">
-  <h1>Claim a Task Based On a Category</h1><br><br>
-  <div class="category_selection">
-    <div class="category_left">
-      <% @categories_1_4.each do |category| %>
-        <h3><%= category.name %></h3><br>
-          <ul>
-            <% if category.open_tasks.empty? %>
-              <li>No tasks currently available</li>
-            <% else %>
-              <% category.open_tasks[0..1].each do |task| %>
-                <li> - <%= link_to task.title, task_path(task) %></li>
+    <h1>Claim a Task Based On a Category</h1><br><br>
+    <div class="category_selection">
+      <div class="category_left">
+        <% @categories_1_4.each do |category| %>
+          <h3><%= category.name %></h3><br>
+            <ul>
+              <% if category.open_tasks.empty? %>
+                <li>No tasks currently available</li>
+              <% else %>
+                <% category.open_tasks[0..1].each do |task| %>
+                  <li> - <%= link_to task.title, task_path(task) %></li>
+                <% end %>
               <% end %>
-            <% end %>
-            <% if category.open_tasks.length > 2 %>
-              <li> - <%= link_to "See More for #{category.name}", category_path(category) %></li>
-            <% end %>
-          </ul>
+              <% if category.open_tasks.length > 2 %>
+                <li> - <%= link_to "See More for #{category.name}", category_path(category) %></li>
+              <% end %>
+            </ul>
+          <% end %>
+      </div>
+      <div class="category_right">
+        <% @categories_5_8.each do |category| %>
+          <h3><%= category.name %></h3><br>
+            <ul>
+              <% if category.open_tasks.empty? %>
+                <li>No tasks currently available</li>
+              <% else %>
+                <% category.open_tasks[0..1].each do |task| %>
+                  <li> - <%= link_to task.title, task_path(task) %></li>
+                <% end %>
+              <% end %>
+              <% if category.open_tasks.length > 2 %>
+                <li> - <%= link_to "See More for #{category.name}", category_path(category) %></li>
+              <% end %>
+            </ul>
         <% end %>
-    </div>
-    <div class="category_right">
-      <% @categories_5_8.each do |category| %>
-        <h3><%= category.name %></h3><br>
-          <ul>
-            <% if category.open_tasks.empty? %>
-              <li>No tasks currently available</li>
-            <% else %>
-              <% category.open_tasks[0..1].each do |task| %>
-                <li> - <%= link_to task.title, task_path(task) %></li>
-              <% end %>
-            <% end %>
-            <% if category.open_tasks.length > 2 %>
-              <li> - <%= link_to "See More for #{category.name}", category_path(category) %></li>
-            <% end %>
-          </ul>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,8 +1,10 @@
-<div class="specific_category_breakdown">
-  <h1>Here are all the tasks under <%= @category.name %>:</h1>
-    <% @category.open_tasks[0..15].each do |task| %>
-      <div class="specific_category_tasks">
-        <h3> - <%= link_to task.title, task_path(task) %></h3>
-      </div>
-    <% end %>
+<div class="mainSection">
+  <div class="specific_category_breakdown">
+    <h1>Here are all the tasks under <%= @category.name %>:</h1>
+      <% @category.open_tasks[0..15].each do |task| %>
+        <div class="specific_category_tasks">
+          <h3> - <%= link_to task.title, task_path(task) %></h3>
+        </div>
+      <% end %>
+  </div>
 </div>

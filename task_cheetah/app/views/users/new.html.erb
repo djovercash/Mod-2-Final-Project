@@ -1,19 +1,21 @@
-<div class="new_user_form">
-  <h1>Become a Cheetah and join the fastest trend in task sharing</h1><br>
-  <%= render "errors/error_messages" %>
-  <%= form_for @user, controller: 'users', action: 'create' do |f| %>
-    <%= f.label :name, "Name: " %>
-    <%= f.text_field :name %><br>
+<div class="mainSection">
+  <div class="new_user_form">
+    <h1>Become a Cheetah and join the fastest trend in task sharing</h1><br>
+    <%= render "errors/error_messages" %>
+    <%= form_for @user, controller: 'users', action: 'create' do |f| %>
+      <%= f.label :name, "Name: " %>
+      <%= f.text_field :name %><br>
 
-    <%= f.label :username, "Username: " %>
-    <%= f.text_field :username %><br>
+      <%= f.label :username, "Username: " %>
+      <%= f.text_field :username %><br>
 
-    <%= f.label :password, "Password: " %>
-    <%= f.password_field :password %><br>
+      <%= f.label :password, "Password: " %>
+      <%= f.password_field :password %><br>
 
-    <%= f.label :password_confirmation, "Password Confirmation: " %>
-    <%= f.password_field :password_confirmation %><br><br>
+      <%= f.label :password_confirmation, "Password Confirmation: " %>
+      <%= f.password_field :password_confirmation %><br><br>
 
-    <%= f.submit "Become a Cheetah" %>
-  <% end %>
+      <%= f.submit "Become a Cheetah" %>
+    <% end %>
+  </div>
 </div>

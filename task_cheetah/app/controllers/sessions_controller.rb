@@ -2,6 +2,21 @@ class SessionsController < ApplicationController
   skip_before_action :require_logged_in, only: [:new, :create]
 
   def new
+    ##Top Cheetah Points
+    @all_users = User.all
+    @cheetahs = []
+    @all_users.each do |user|
+      @cheetahs << [user.username, user.cheetah_points]
+    end
+    @top_cheetah_points = @cheetahs.sort_by{ |x, y| y}
+
+    ##Newest Created Task
+    @all_tasks = Task.all
+    @tasks = []
+    @all_tasks.each do |task|
+      @tasks << [task.title, task.created_at]
+    end
+    @newest_task = @tasks.sort_by{ |x, y| y }
   end
 
   def create
