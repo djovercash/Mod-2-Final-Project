@@ -2,10 +2,10 @@
   <div class="user_show">
     <h1>Welcome back, <%= @user.name %></h1>
     <div class="user_options">
-      <%= button_to "Create a Task", new_task_path, method: :get %>
-      <%= button_to "Claim a Task", categories_path, method: :get %>
-      <%= button_to "Edit Your Info", edit_user_path(@user), method: :get %>
-      <%= button_to "Logout", logout_path %>
+      <%= button_to "Create a Task", new_task_path, method: :get, :class => "welcome_btn" %>
+      <%= button_to "Claim a Task", categories_path, method: :get, :class => "welcome_btn" %>
+      <%= button_to "Edit Your Info", edit_user_path(@user), method: :get, :class => "welcome_btn" %>
+      <%= button_to "Logout", logout_path, :class => "welcome_btn" %>
     </div>
 
     <br>
@@ -68,13 +68,30 @@
         <div class="user_show_box">
           <h2>Cheetah Status</h2>
             <% if @cheetah_status == "Complete tasks to earn Cheetah Points" %>
-              <%= @cheetah_status %>
+              <%= @cheetah_status[0] %>
             <% else %>
               Cheetah Status: <%= @cheetah_status[0] %><br>
-              Cheetah Rating: <%= @cheetah_status[1] %>
+              Cheetah Rating: <%= @cheetah_status[1].round(1) %>
             <% end %><br>
             Points: <%= @user.cheetah_points %>
         </div>
       </div>
+  </div>
+</div>
+
+<div class="mainSection_bottom">
+  <div class="mainSection_shout_out">
+    <h1>Top Cheetah Rating</h1>
+      <h3><%= @top_user[1] %></h3>
+      <h4><%= @top_user[0][0] %> | <%= @top_user[0][1].round(1) %></h4>
+  </div>
+  <div class="mainSection_shout_out">
+    <h1>Newest Task Created</h1>
+    <h3><%= @newest_task_name %></h3>
+  </div>
+  <div class="mainSection_shout_out">
+    <h1>Top Cheetah Points</h1>
+      <h3>User: <%= @top_cheetah_points.last[0] %></h3>
+      <h3>Points: <%= @top_cheetah_points.last[1] %></h3>
   </div>
 </div>

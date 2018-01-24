@@ -8,6 +8,7 @@ class CreateTasks < ActiveRecord::Migration[5.1]
       t.integer :cheetah_points
       t.boolean :cheetah, default: false
       t.boolean :rabbit, default: false
+      t.string :address
 
       t.timestamps
     end

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180119200959) do
     t.integer "cheetah_points"
     t.boolean "cheetah", default: false
     t.boolean "rabbit", default: false
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

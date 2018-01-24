@@ -4,24 +4,28 @@
     <h3>Description: <%= @task.description %></h3>
     <%= render "errors/error_messages" %>
 
+    <%= image_tag @task.google_map %>
+
+
     <% if @test && @task.cheetah == false && @task.snake_id != session[:user_id] %>
       <%= button_to "Submit Task for approval?", approval_task_path %>
     <% elsif @test && @task.cheetah == true && session[:user_id] == @task.snake_id%>
       <%= form_for @task, url: completed_task_path, method: :post do |f| %>
         <%= f.label :rating %>
-        <%= f.number_field :rating %>
+        <%= f.number_field :rating, value: 0 %>
         <%= f.submit "Mark Completed" %>
       <% end %>
+        <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
     <% elsif @test && @task.cheetah == true && session[:user_id] != @task.snake_id%>
       <h3>Waiting for Approval</h3>
     <% elsif @test && @task.cheetah == false %>
       <h3>Currently claimed by <%= @task.name_check %></h3>
+      <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
+    <% elsif @task.cheetah == false && @task.snake_id == session[:user_id]  %>
+      <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
     <% else %>
       <%= button_to "Would you like to claim this task?", claim_task_path %>
     <% end %>
 
-    <% if session[:user_id] == @task.snake_id %>
-      <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
-    <% end %>
   </div>
 </div>

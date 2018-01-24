@@ -17,6 +17,11 @@ class SessionsController < ApplicationController
       @tasks << [task.title, task.created_at]
     end
     @newest_task = @tasks.sort_by{ |x, y| y }
+    @newest_task_name = @newest_task.last[0]
+
+    #Top Cheetah Rating
+    @top_users = User.all.map {|user| [user.cheetah_status, user.username]}
+    @top_user = @top_users.sort_by {|x| x[0][1]}.last
   end
 
   def create

@@ -1,10 +1,10 @@
 class Task < ApplicationRecord
   belongs_to :snake, :class_name => "User"
 
-  has_many :jobs
+  has_many :jobs, dependent: :destroy
   has_many :cheetahs, :through => :jobs, :class_name => "User"
 
-  has_many :category_tasks
+  has_many :category_tasks, dependent: :destroy
   has_many :categories, through: :category_tasks
 
   validates :title, presence: true
@@ -19,7 +19,11 @@ class Task < ApplicationRecord
 
   def check_points
     @user = User.find(self.snake_id)
-    errors.add(:cheetah_points, "Not enough points to offer to this task") if cheetah_points > @user.cheetah_points
+    if self.cheetah_points > @user.cheetah_points
+      false
+    else
+      true
+    end
   end
 
   def claim_check
@@ -28,6 +32,10 @@ class Task < ApplicationRecord
 
   def name_check
     Job.cheetah_name(self.id)
+  end
+
+  def google_map
+    "https://maps.googleapis.com/maps/api/staticmap?center=#{self.address}&size=300x300&zoom=15&maptype=roadmap&markers=color:blue%7C#{self.address}"
   end
 
 end

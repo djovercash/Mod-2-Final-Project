@@ -19,8 +19,9 @@ class User < ApplicationRecord
     hold = self.cats.select { |cat| cat.task.rating }
     hold = hold.map { |cat| cat.task.rating }
     hold = hold.inject(0.0) { |sum, el| sum + el } / hold.size
+    hold.round(1)
     if hold.nan?
-      "Complete tasks to earn Cheetah Points"
+      ["Complete tasks to earn Cheetah Points", 0.0]
     else
 
       case hold

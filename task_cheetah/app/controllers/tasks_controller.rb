@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: [:claim, :approval, :completed, :edit, :update, :show]
+  before_action :find_task, only: [:claim, :approval, :completed, :edit, :update, :show, :destroy]
 
 
 
@@ -20,13 +20,18 @@ class TasksController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @task = @user.tasks.build(task_params)
     @categories = Category.all
-
-    if @task.valid?
-      @task.save
-      @user.update(cheetah_points: (@user.cheetah_points - @task.cheetah_points))
-      redirect_to user_path(@user)
+    
+    if @task.check_points
+      if @task.valid? && @task.check_points
+        @task.save
+        @user.update(cheetah_points: (@user.cheetah_points - @task.cheetah_points))
+        redirect_to user_path(@user)
+      else
+        flash[:errors] = @task.errors.full_messages
+        render :new
+      end
     else
-      flash[:errors] = @task.errors.full_messages
+      flash[:errors] = ["Not enough points to offer to this task"]
       render :new
     end
   end
@@ -71,13 +76,15 @@ class TasksController < ApplicationController
 
   ### User destroy option
   def destroy
-
+    @user.update(cheetah_points: (@user.cheetah_points + @task.cheetah_points))
+    @task.destroy
+    redirect_to user_path(@user)
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :cheetah_points, category_ids: [])
+    params.require(:task).permit(:title, :description, :address, :cheetah_points, category_ids: [])
   end
 
   def find_task

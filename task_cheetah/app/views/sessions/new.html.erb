@@ -18,17 +18,19 @@
   </div>
 </div>
 
-<div class="mainSection_bottom">
-  <div class="mainSection_shout_out">
-    <h1>Top Cheetah Rating</h1>
+  <div class="mainSection_bottom">
+    <div class="mainSection_shout_out">
+      <h1>Top Cheetah Rating</h1>
+        <h3><%= @top_user[1] %></h3>
+        <h4><%= @top_user[0][0] %> | <%= @top_user[0][1].round(1)  %></h4>
+    </div>
+    <div class="mainSection_shout_out">
+      <h1>Newest Task Created</h1>
+      <h3><%= @newest_task_name %></h3>
+    </div>
+    <div class="mainSection_shout_out">
+      <h1>Top Cheetah Points</h1>
+        <h3>User: <%= @top_cheetah_points.last[0] %></h3>
+        <h3>Points: <%= @top_cheetah_points.last[1] %></h3>
+    </div>
   </div>
-  <div class="mainSection_shout_out">
-    <h1>Newest Task Created</h1>
-    <h3><%= @newest_task.last[0] %></h3>
-  </div>
-  <div class="mainSection_shout_out">
-    <h1>Top Cheetah Points</h1>
-      <h3>User: <%= @top_cheetah_points.last[0] %></h3>
-      <h3>Points: <%= @top_cheetah_points.last[1] %></h3>
-  </div>
-</div>

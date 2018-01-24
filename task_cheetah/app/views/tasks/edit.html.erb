@@ -9,6 +9,9 @@
       <%= f.label :description, "Task Description: " %>
       <%= f.text_field :description %><br><br>
 
+      <%= f.label :address, "Address: " %>
+      <%= f.text_field :address %><br><br>
+
       <%= f.hidden_field :snake_id, :value => session[:user_id] %>
 
       <%= f.label "Select Categories:" %><br><br>
@@ -17,4 +20,6 @@
       <%= f.submit "Send to the Cheetahs" %>
     <% end %>
   </div>
+
+    <%= button_to "Delete #{@task.title}", @task, method: :delete %>
 </div>
