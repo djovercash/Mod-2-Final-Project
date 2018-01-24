@@ -35,7 +35,9 @@ class Task < ApplicationRecord
   end
 
   def google_map
-    "https://maps.googleapis.com/maps/api/staticmap?center=#{self.address}&size=300x300&zoom=15&maptype=roadmap&markers=color:blue%7C#{self.address}"
+    address = self.address.gsub(/\s/,'+')
+    "https://www.google.com/maps/embed/v1/place?key=AIzaSyD-wjjCNt9v69Qtk8KYVe0kY8FUky7sDNw&q=#{self.address}"
+    # "https://maps.googleapis.com/maps/api/staticmap?center=#{self.address}&size=300x300&zoom=15&maptype=roadmap&markers=color:blue%7C#{self.address}"
   end
 
 end

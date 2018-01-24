@@ -31,7 +31,16 @@
 
   <div class="current_task_map">
 
-    <%= image_tag @task.google_map %>
+    <iframe
+      width="450"
+      height="350"
+      frameborder="0" style="border:0"
+      src=<%= @task.google_map %> allowfullscreen>
+    </iframe>
+
+
+
+
 
   </div>
 </div>
