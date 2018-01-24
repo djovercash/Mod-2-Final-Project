@@ -288,3 +288,70 @@
  .footer nav ul li:first-child {
    margin-right: 16px;
  }
+
+/* new task */
+
+.create_task_form {
+  display: inline;
+}
+
+.create_task_form h1 {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgb(0, 150, 150);
+}
+
+/* current task */
+
+.current_task_view {
+  display: inline;
+}
+
+/* .current_task {
+  vertical-align: middle;
+  display: inline;
+} */
+
+.current_task_view h1 {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgb(0, 150, 150);
+}
+.current_task_view h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgb(0, 150, 150);
+  display: inline;
+}
+.current_task_view h4 {
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgb(0, 150, 150);
+  display: inline;
+}
+
+/* edit task */
+
+.edit_task_form {
+  display: inline;
+}
+
+.edit_task_form h1 {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgb(0, 150, 150);
+}
+
+
+.form-group {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.label-checkbox {
+  padding: 1rem;
+  margin-top: 1rem;
+}

@@ -1,18 +1,18 @@
 <div class="mainSection">
+
   <div class="current_task_view">
     <h1><%= @task.title %></h1><br>
-    <h3>Description: <%= @task.description %></h3>
+    <h3>Description: </h3><h4><%= @task.description %></h4><br>
+    <h3>Cheetah Points: </h3><h4><%= @task.cheetah_points %></h4><br>
+    <h3>Created By: </h3><h4><%= @task.snake.username %></h4><br>
     <%= render "errors/error_messages" %>
-
-    <%= image_tag @task.google_map %>
-
 
     <% if @test && @task.cheetah == false && @task.snake_id != session[:user_id] %>
       <%= button_to "Submit Task for approval?", approval_task_path %>
     <% elsif @test && @task.cheetah == true && session[:user_id] == @task.snake_id%>
       <%= form_for @task, url: completed_task_path, method: :post do |f| %>
-        <%= f.label :rating %>
-        <%= f.number_field :rating, value: 0 %>
+        <h3><%= f.label :rating %></h3>
+        <%= f.number_field :rating, value: 0 %><br>
         <%= f.submit "Mark Completed" %>
       <% end %>
         <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
@@ -26,6 +26,12 @@
     <% else %>
       <%= button_to "Would you like to claim this task?", claim_task_path %>
     <% end %>
+
+  </div>
+
+  <div class="current_task_map">
+
+    <%= image_tag @task.google_map %>
 
   </div>
 </div>
