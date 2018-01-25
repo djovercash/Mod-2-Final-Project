@@ -19,8 +19,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :cheetah_points, "Cheetah Point Value: " %>
-      <%= f.text_field :cheetah_points %><br>
+      <%= f.label "Cheetah Points once assigned cannot be edited." %>
+      <%= f.hidden_field :cheetah_points %><br>
     </div>
       <%= f.hidden_field :snake_id, :value => session[:user_id] %>
 
