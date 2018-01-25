@@ -1,26 +1,28 @@
 <div class="mainSection">
-  <div class="analytic data">
+  <div class="analytic-data">
     <% if @user.admin %>
-      <h2>Current Analytic Data for Cheetah Run</h2>
-        <ul>Members
-          <li>Current Amount: <%= @total_users %></li>
-          <li>Newest User: <%= @newest_user.name %>
+      <h1>Current Analytic Data for Cheetah Run</h1><br>
+        <ul><h2>Members</h2>
+          <li><h3>Current Amount:</h3> <%= @total_users %></li>
+          <li><h3>Newest User:</h3> <%= @newest_user.name %>
             <ul>
-              <li>Created on <%= @newest_user.created_at.strftime("%B %-d, %Y") %></li>
+              <li><h3>Created On:</h3> <%= @newest_user.created_at.strftime("%B %-d, %Y") %></li>
             </ul>
+            <li> <h3>Top Rated User:</h3> <%= @top_user[1] %>, <%= @top_user[0][0] %> | <%= @top_user[0][1].round(1) %> </li>
+            <li> <h3>Most Cheetah Points:</h3> <%= @top_cheetah_points.last[0] %>, <%= @top_cheetah_points.last[1] %> </li>
         </ul><br>
-        <ul>Tasks
-          <li>Amount of Tasks Created to Date: <%= @total_tasks %></li>
-          <li>Newest Task: <%= @newest_task.title %></li>
+        <ul><h2>Tasks</h2>
+          <li><h3>Amount of Tasks Created to Date:</h3> <%= @total_tasks %></li>
+          <li><h3>Newest Task:</h3> <%= @newest_task.title %></li>
             <ul>
-              <li>Created on <%= @newest_task.created_at.strftime("%B %-d, %Y") %></li>
+              <li><h3>Created on:</h3> <%= @newest_task.created_at.strftime("%B %-d, %Y") %></li>
             </ul>
-          <li>Tasks Completed to Date: <%= @completed_tasks %> </li>
-          <li>Tasks Currently Completed and Awaiting Review: <%= @review_pending_tasks %> </li>
-          <li>Tasks Currently Uncompleted and Unclaimed: <%= @unclaimed_tasks %> </li>
+          <li><h3>Tasks Completed to Date:</h3> <%= @completed_tasks %> </li>
+          <li><h3>Tasks Currently Completed and Awaiting Review:</h3> <%= @review_pending_tasks %> </li>
+          <li><h3>Tasks Currently Uncompleted and Unclaimed:</h3> <%= @unclaimed_tasks %> </li>
         </ul>
       <% else %>
-        <h2>You are not authorized to view this page. Please return to your homepage</h2>
+        <h1>You are not authorized to view this page. <br><%= link_to "Please return to your homepage!", user_path(@user) %></h1>
       <% end %>
   </div>
 </div>

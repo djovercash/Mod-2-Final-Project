@@ -13,6 +13,13 @@ class UsersController < ApplicationController
     @completed_tasks = Task.select {|task| task.cheetah == true && task.rabbit == true}.count
     @review_pending_tasks = Task.select { |task| task.cheetah == true && task.rabbit == false }.count
     @unclaimed_tasks = Task.select { |task| task.cheetah == false && task.rabbit == false}.count
+
+    #Top Cheetah Rating
+    @top_user = User.top_user
+
+    ##Top Cheetah Points
+    @top_cheetah_points = User.top_cheetah_points
+    
   end
 
 ### WHERE A USER - ONCE LOGGED IN SEES THEIR Jobs(CATS - user.cats)
@@ -31,19 +38,13 @@ class UsersController < ApplicationController
     @cheetah_status = @user.cheetah_status
 
     ##Top Cheetah Points
-    @all_users = User.all
-    @cheetahs = []
-    @all_users.each do |user|
-      @cheetahs << [user.username, user.cheetah_points]
-    end
-    @top_cheetah_points = @cheetahs.sort_by{ |x, y| y}
+    @top_cheetah_points = User.top_cheetah_points
 
     ##Newest Created Task
     @newest_task = Task.all.sort_by { |task| task.created_at}.last
 
     #Top Cheetah Rating
-    @top_users = User.all.map {|user| [user.cheetah_status, user.username]}
-    @top_user = @top_users.sort_by {|x| x[0][1]}.last
+    @top_user = User.top_user
   end
 
 

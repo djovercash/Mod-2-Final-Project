@@ -49,4 +49,15 @@ class User < ApplicationRecord
     end
   end
 
+  def self.top_user
+    top_users = User.all.map {|user| [user.cheetah_status, user.username]}
+    top_users.sort_by {|x| x[0][1]}.last
+  end
+
+  def self.top_cheetah_points
+    top_users = User.all.map {|user| [user.username, user.cheetah_points]}
+    top_users.sort_by { |x| x[1]}
+  end
+
+
 end
