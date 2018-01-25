@@ -73,8 +73,8 @@
             <% if @cheetah_status[0] == "Complete tasks to earn Cheetah Points" %>
               <h3 class="task_title"> No Cheetah Status </h3>
             <% else %>
-              <h3 class="task_title">Cheetah Status: <%= @cheetah_status[0] %></h3>
-              <h3 class="task_title">Cheetah Rating: <%= @cheetah_status[1].round(1) %></h3>
+              <h3 class="task_title">Status: <%= @cheetah_status[0] %></h3>
+              <h3 class="task_title">Rating: <%= @cheetah_status[1].round(1) %></h3>
             <% end %>
             <h3 class="task_title">Points: <%= @user.cheetah_points %></h3>
         </div>
