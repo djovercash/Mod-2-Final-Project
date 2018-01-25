@@ -3,8 +3,10 @@
     <h1>Here are all the tasks under <%= @category.name %>:</h1>
       <% @category.open_tasks[0..15].each do |task| %>
         <div class="specific_category_tasks">
-          <h3> - <%= link_to task.title, task_path(task) %></h3>
+          <h3> - <%= link_to task.title, task_path(task) %> | Created by: <%= task.snake.username %> on <%= task.created_at.strftime("%B %-d, %Y") %></h3>
         </div>
-      <% end %>
+      <% end %><br><br>
+
+    <h1><%= link_to "Return to all categories", categories_path %></h1>
   </div>
 </div>

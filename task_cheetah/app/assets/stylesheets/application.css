@@ -152,7 +152,7 @@
   margin-left: 26%;
   margin-right: 25%;
   width: 50%;
-  margin-top: 30%;
+  margin-top: 35%;
 }
 
 .mainSection_bottom h1 {
@@ -206,8 +206,12 @@
 
  .user_show_boxes {
    display: flex;
-   justify-content: space-around;
+   justify-content: center;
    margin-top: 1rem;
+ }
+
+ .user_show_box {
+   margin: 0rem 3.2rem;
  }
 
  .task_title{
@@ -267,6 +271,7 @@
  }
 
  .specific_category_breakdown h1 {
+   text-align: center;
    font-size: 1.5rem;
    text-decoration: underline;
    font-weight: bold;

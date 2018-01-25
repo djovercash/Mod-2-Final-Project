@@ -20,17 +20,15 @@ class TasksController < ApplicationController
     @task = @user.tasks.build(task_params)
     @categories = Category.all
 
-    if @task.check_points
-      if @task.valid? && @task.check_points
-        @task.save
-        @user.update(cheetah_points: (@user.cheetah_points - @task.cheetah_points))
-        redirect_to user_path(@user)
-      else
-        flash[:errors] = @task.errors.full_messages
-        render :new
-      end
+    if @task.valid? && @task.check_points
+      @task.save
+      @user.update(cheetah_points: (@user.cheetah_points - @task.cheetah_points))
+      redirect_to user_path(@user)
     else
-      flash[:errors] = ["Not enough points to offer to this task"]
+      flash[:errors] = @task.errors.full_messages
+      if !@task.check_points
+        flash[:errors] << "Not enough cheetah points for this task."
+      end
       render :new
     end
   end

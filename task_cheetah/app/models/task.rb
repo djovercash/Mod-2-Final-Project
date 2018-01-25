@@ -11,6 +11,7 @@ class Task < ApplicationRecord
   validates :description, presence: true
   validates :address, presence: true
   validates :rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }, allow_nil: true
+  validates :cheetah_points, presence: true
   validates :cheetah_points, numericality: { greater_than_or_equal_to: 1 }
 
 
