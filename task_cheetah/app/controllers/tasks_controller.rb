@@ -17,7 +17,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    @user = User.find_by(id: session[:user_id])
     @task = @user.tasks.build(task_params)
     @categories = Category.all
 

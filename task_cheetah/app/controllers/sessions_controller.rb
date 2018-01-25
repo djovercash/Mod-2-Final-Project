@@ -3,19 +3,13 @@ class SessionsController < ApplicationController
 
   def new
     ##Top Cheetah Points
-    @all_users = User.all
-    @cheetahs = []
-    @all_users.each do |user|
-      @cheetahs << [user.username, user.cheetah_points]
-    end
-    @top_cheetah_points = @cheetahs.sort_by{ |x, y| y}
+    @top_cheetah_points = User.top_cheetah_points
 
     ##Newest Created Task
     @newest_task = Task.all.sort_by { |task| task.created_at}.last
 
     #Top Cheetah Rating
-    @top_users = User.all.map {|user| [user.cheetah_status, user.username]}
-    @top_user = @top_users.sort_by {|x| x[0][1]}.last
+    @top_user = User.top_user
   end
 
   def create
