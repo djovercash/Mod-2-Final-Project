@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   def index
     @categories_1_4 = Category.all[0..3]
     @categories_5_8 = Category.all[4..7]
+    @categories = Category.all
   end
 
   def show

@@ -2,6 +2,18 @@ class UsersController < ApplicationController
   skip_before_action :require_logged_in, only: [:new, :create]
   before_action :log_out, only: [:new]
 
+  def analytics
+    #User Data
+    @total_users = User.all.count
+    @newest_user = User.all.last
+
+    #Task Data
+    @total_tasks = Task.all.count
+    @newest_task = Task.all.last
+    @completed_tasks = Task.select {|task| task.cheetah == true && task.rabbit == true}.count
+    @review_pending_tasks = Task.select { |task| task.cheetah == true && task.rabbit == false }.count
+    @unclaimed_tasks = Task.select { |task| task.cheetah == false && task.rabbit == false}.count
+  end
 
 ### WHERE A USER - ONCE LOGGED IN SEES THEIR Jobs(CATS - user.cats)
   def show

@@ -9,6 +9,7 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+  validates :address, presence: true
   validates :rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }, allow_nil: true
   validates :cheetah_points, numericality: { greater_than_or_equal_to: 1 }
 
@@ -34,9 +35,15 @@ class Task < ApplicationRecord
     Job.cheetah_name(self.id)
   end
 
+  def owner_find
+    User.find(self.snake_id)
+  end
+
+
   def google_map
     address = self.address.gsub(/\s/,'+')
-    "https://www.google.com/maps/embed/v1/place?key=AIzaSyD-wjjCNt9v69Qtk8KYVe0kY8FUky7sDNw&q=#{self.address}"
+    address = address.gsub(',+',',')
+    "https://www.google.com/maps/embed/v1/place?key=AIzaSyD-wjjCNt9v69Qtk8KYVe0kY8FUky7sDNw&q=#{address}"
     # "https://maps.googleapis.com/maps/api/staticmap?center=#{self.address}&size=300x300&zoom=15&maptype=roadmap&markers=color:blue%7C#{self.address}"
   end
 

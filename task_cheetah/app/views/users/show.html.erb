@@ -2,10 +2,13 @@
   <div class="user_show">
     <h1>Welcome back, <%= @user.name %></h1>
     <div class="user_options">
-      <%= button_to "Create a Task", new_task_path, method: :get, :class => "welcome_btn" %>
-      <%= button_to "Claim a Task", categories_path, method: :get, :class => "welcome_btn" %>
-      <%= button_to "Edit Your Info", edit_user_path(@user), method: :get, :class => "welcome_btn" %>
-      <%= button_to "Logout", logout_path, :class => "welcome_btn" %>
+      <%= button_to "Create a Task", new_task_path, method: :get, :class => "btn" %>
+      <%= button_to "Claim a Task", categories_path, method: :get, :class => "btn" %>
+      <%= button_to "Edit Your Info", edit_user_path(@user), method: :get, :class => "btn" %>
+      <% if @user.admin == true %>
+        <%= button_to "Admin Data", analytics_path, method: :get, :class => "btn" %>
+      <% end %>
+      <%= button_to "Logout", logout_path, :class => "btn" %>
     </div>
 
     <br>
@@ -19,7 +22,7 @@
               <% @user_claim.each do |completed_task| %>
                 <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
                   <ul>
-                    <li class="task_detail">(Created: <%= completed_task.created_at.strftime("%B %-d, %Y") %>)</li>
+                    <li class="task_detail">(Created by: <%= completed_task.owner_find.username %>)</li>
                   </ul>
               <% end %>
             <% end %>
@@ -68,12 +71,12 @@
         <div class="user_show_box">
           <h2>Cheetah Status</h2>
             <% if @cheetah_status[0] == "Complete tasks to earn Cheetah Points" %>
-              <%= @cheetah_status[0] %>
+              <h3 class="task_title"><%= @cheetah_status[0] %></h3>
             <% else %>
-              Cheetah Status: <%= @cheetah_status[0] %><br>
-              Cheetah Rating: <%= @cheetah_status[1].round(1) %>
-            <% end %><br>
-            Points: <%= @user.cheetah_points %>
+              <h3 class="task_title">Cheetah Status: <%= @cheetah_status[0] %></h3>
+              <h3 class="task_title">Cheetah Rating: <%= @cheetah_status[1].round(1) %></h3>
+            <% end %>
+            <h3 class="task_title">Points: <%= @user.cheetah_points %></h3>
         </div>
       </div>
   </div>

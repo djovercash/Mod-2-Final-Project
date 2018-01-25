@@ -1,6 +1,6 @@
 <div class="mainSection">
   <div class="new_user_form">
-    <h1>Become a Cheetah and join the fastest trend in task sharing</h1><br>
+    <h1>Become a Cheetah and join the fastest task sharing community today</h1><br>
     <%= render "errors/error_messages" %>
     <%= form_for @user, controller: 'users', action: 'create' do |f| %>
       <div class="form-group">
@@ -24,7 +24,7 @@
       </div>
 
       <div class="form-group">
-        <%= f.submit "Become a Cheetah" %>
+        <%= f.submit "Become a Cheetah", :class => "btn" %>
       </div>
     <% end %>
   </div>

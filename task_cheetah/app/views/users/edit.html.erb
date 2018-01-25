@@ -23,9 +23,9 @@
       </div>
 
       <div class="user_buttons">
-        <%= f.submit "Update a Cheetah" %>
+        <%= f.submit "Update a Cheetah", :class => "btn" %>
     <% end %>
-    <%= button_to "Delete Account", @user, method: :delete %>
+    <%= button_to "Delete Account", @user, method: :delete, :class => "btn_delete" %>
     </div>
   </div>
 </div>

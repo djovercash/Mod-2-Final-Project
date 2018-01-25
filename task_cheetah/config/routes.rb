@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :users, except: [:index]
 
   root 'sessions#new'
-
+  get '/index' => 'categories#index'
   get '/login' => 'sessions#new'
+  get '/analytics' => 'users#analytics', as: 'analytics'
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
 

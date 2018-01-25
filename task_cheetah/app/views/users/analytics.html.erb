@@ -1,0 +1,26 @@
+<div class="mainSection">
+  <div class="analytic data">
+    <% if @user.admin %>
+      <h2>Current Analytic Data for Cheetah Run</h2>
+        <ul>Members
+          <li>Current Amount: <%= @total_users %></li>
+          <li>Newest User: <%= @newest_user.name %>
+            <ul>
+              <li>Created on <%= @newest_user.created_at.strftime("%B %-d, %Y") %></li>
+            </ul>
+        </ul><br>
+        <ul>Tasks
+          <li>Amount of Tasks Created to Date: <%= @total_tasks %></li>
+          <li>Newest Task: <%= @newest_task.title %></li>
+            <ul>
+              <li>Created on <%= @newest_task.created_at.strftime("%B %-d, %Y") %></li>
+            </ul>
+          <li>Tasks Completed to Date: <%= @completed_tasks %> </li>
+          <li>Tasks Currently Completed and Awaiting Review: <%= @review_pending_tasks %> </li>
+          <li>Tasks Currently Uncompleted and Unclaimed: <%= @unclaimed_tasks %> </li>
+        </ul>
+      <% else %>
+        <h2>You are not authorized to view this page. Please return to your homepage</h2>
+      <% end %>
+  </div>
+</div>

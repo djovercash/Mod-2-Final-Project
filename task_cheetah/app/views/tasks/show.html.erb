@@ -1,46 +1,41 @@
 <div class="mainSection">
+  <div class="task_view">
+    <div class="current_task_view">
+      <h1><%= @task.title %></h1>
+      <h6>Created on: <%= @task.created_at.strftime("%B %-d, %Y") %></h6>
+      <h3>Description: </h3><h4><%= @task.description %></h4><br><br>
+      <h3>Cheetah Points: </h3><h4><%= @task.cheetah_points %></h4><br><br>
+      <h3>Created By: </h3><h4><%= @task.snake.username %></h4><br>
+      <%= render "errors/error_messages" %>
 
-  <div class="current_task_view">
-    <h1><%= @task.title %></h1><br>
-    <h3>Description: </h3><h4><%= @task.description %></h4><br>
-    <h3>Cheetah Points: </h3><h4><%= @task.cheetah_points %></h4><br>
-    <h3>Created By: </h3><h4><%= @task.snake.username %></h4><br>
-    <%= render "errors/error_messages" %>
-
-    <% if @test && @task.cheetah == false && @task.snake_id != session[:user_id] %>
-      <%= button_to "Submit Task for approval?", approval_task_path %>
-    <% elsif @test && @task.cheetah == true && session[:user_id] == @task.snake_id%>
-      <%= form_for @task, url: completed_task_path, method: :post do |f| %>
-        <h3><%= f.label :rating %></h3>
-        <%= f.number_field :rating, value: 0 %><br>
-        <%= f.submit "Mark Completed" %>
+      <% if @test && @task.cheetah == false && @task.snake_id != session[:user_id] %>
+        <%= button_to "Submit For Approval?", approval_task_path, :class => "btn" %>
+      <% elsif @test && @task.cheetah == true && session[:user_id] == @task.snake_id%>
+        <%= form_for @task, url: completed_task_path, method: :post do |f| %>
+          <h3><%= f.label :rating %></h3>
+          <%= f.number_field :rating, value: 0 %><br>
+          <%= f.submit "Mark Completed", :class => "btn" %>
+        <% end %>
+          <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get, :class => "btn" %>
+      <% elsif @test && @task.cheetah == true && session[:user_id] != @task.snake_id%>
+        <h3>Waiting for Approval</h3>
+      <% elsif @test && @task.cheetah == false %>
+        <h3>Currently claimed by <%= @task.name_check %></h3>
+        <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get, :class => "btn" %>
+      <% elsif @task.cheetah == false && @task.snake_id == session[:user_id]  %>
+        <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get, :class => "btn" %>
+      <% else %>
+        <%= button_to "Claim this task?", claim_task_path, :class => "btn" %>
       <% end %>
-        <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
-    <% elsif @test && @task.cheetah == true && session[:user_id] != @task.snake_id%>
-      <h3>Waiting for Approval</h3>
-    <% elsif @test && @task.cheetah == false %>
-      <h3>Currently claimed by <%= @task.name_check %></h3>
-      <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
-    <% elsif @task.cheetah == false && @task.snake_id == session[:user_id]  %>
-      <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get %>
-    <% else %>
-      <%= button_to "Would you like to claim this task?", claim_task_path %>
-    <% end %>
+    </div>
 
-  </div>
-
-  <div class="current_task_map">
-
-    <iframe
-      width="450"
-      height="350"
-      frameborder="0" style="border:0"
-      src=<%= @task.google_map %> allowfullscreen>
-    </iframe>
-
-
-
-
-
+    <div class="current_task_map">
+      <iframe
+        width="400"
+        height="300"
+        frameborder="0" style="border:0"
+        src=<%= @task.google_map %> allowfullscreen>
+      </iframe>
+    </div>
   </div>
 </div>
