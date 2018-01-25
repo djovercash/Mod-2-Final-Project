@@ -21,7 +21,7 @@ class TasksController < ApplicationController
     @categories = Category.all
 
     if @task.valid?
-      if @task.cheetah_points
+      if @task.check_points
         @task.save
         @user.update(cheetah_points: (@user.cheetah_points - @task.cheetah_points))
         redirect_to user_path(@user)
