@@ -3,7 +3,7 @@
     <div class="current_task_view">
       <h1><%= @task.title %></h1>
       <h6>Created on: <%= @task.created_at.strftime("%B %-d, %Y") %></h6>
-      <h3>Description: </h3><h4><%= @task.description %></h4><br><br>
+      <h3>Description: </h3><h4><%= truncate(@task.description, :length => 50) %></h4><br><br>
       <h3>Cheetah Points: </h3><h4><%= @task.cheetah_points %></h4><br><br>
       <h3>Created By: </h3><h4><%= @task.snake.username %></h4><br>
       <%= render "errors/error_messages" %>

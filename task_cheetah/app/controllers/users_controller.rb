@@ -94,6 +94,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    session.delete :user_id
     redirect_to '/'
   end
 
