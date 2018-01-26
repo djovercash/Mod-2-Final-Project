@@ -1,13 +1,12 @@
 <div class="mainSection">
-  <div class="pending_task_breakdown">
-    <h1>Here are all the pending tasks:</h1>
+  <div class="user_task_breakdown">
+    <h1>Your Pending Tasks:</h1>
       <% @pending_task.each do |completed_task| %>
-        <li class="task_title"><%= link_to truncate(completed_task.title, :length => 20), task_path(completed_task) %>
+        <li class="task_title"><%= link_to truncate(completed_task.title, :length => 30), task_path(completed_task) %> | Created on: <%= completed_task.created_at.strftime("%B %-d, %Y") %>
           <% if completed_task.claim_check %>
             | Claimed by: <%= completed_task.name_check%>
           <% end %>
-          <ul>
-            <li class="task_detail">(Created: <%= completed_task.created_at.strftime("%B %-d, %Y") %>)</li>
-          </ul>
         </li>
       <% end %>
+    </div>
+  </div>

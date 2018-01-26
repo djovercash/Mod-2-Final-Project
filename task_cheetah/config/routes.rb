@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
 
   get '/users/:id/pending' => 'users#pending', as: 'pending'
+  get '/users/:id/claimed' => 'users#claimed', as: 'claimed'
+  get '/users/:id/review' => 'users#review', as: 'review'
 
   post '/tasks/:id/claim', to: 'tasks#claim', as: 'claim_task'
   post '/tasks/:id/approval', to: 'tasks#approval', as: 'approval_task'

@@ -21,10 +21,10 @@
             <% else %>
               <% @user_claim[0..1].each do |completed_task| %>
                 <li class="task_title"><%= link_to truncate(completed_task.title, :length => 20), task_path(completed_task) %></li>
-                  <ul>
-                    <li class="task_detail">(Created by: <%= completed_task.owner_find.username %>)</li>
-                  </ul>
               <% end %>
+            <% end %>
+            <% if @user_claim.length > 2 %>
+              <li class="user_depth"><%= link_to "More Claimed Tasks", claimed_path(@user) %></li>
             <% end %>
           </ul>
       </div>
@@ -43,10 +43,10 @@
                     | Claimed by: <%= completed_task.name_check%>
                   <% end %>
                 </li>
-                  <ul>
-                    <li class="task_detail">(Created: <%= completed_task.created_at.strftime("%B %-d, %Y") %>)</li>
-                  </ul>
                 <% end %>
+            <% end %>
+            <% if @pending_task.length > 2 %>
+              <li class="user_depth"><%= link_to "More Pending Tasks", pending_path(@user) %></li>
             <% end %>
           </ul>
         </div>
@@ -62,6 +62,9 @@
                 <% @review_task[0..1].each do |completed_task| %>
                   <li class="task_title"><%= link_to truncate(completed_task.title, :length => 20), task_path(completed_task) %></li>
                 <% end %>
+              <% end %>
+              <% if @review_task.length > 2 %>
+                <li class="user_depth"><%= link_to "More Tasks for Review", review_path(@user) %></li>
               <% end %>
             </ul>
         </div>

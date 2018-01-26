@@ -50,6 +50,15 @@ class UsersController < ApplicationController
     @pending_task = @user.tasks.select { |task| !task.cheetah }
   end
 
+  def claimed
+    @user_claim_job = @user.cats.select { |cat| !cat.task.rabbit }
+    @user_claim = @user_claim_job.map { |cat| cat.task }
+  end
+
+  def review
+    @review_task = @user.tasks.select { |task| task.cheetah && task.rabbit == false }
+  end
+
 
 ### CREATE NEW USER
   def new

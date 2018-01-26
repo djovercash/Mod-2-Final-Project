@@ -1,0 +1,8 @@
+<div class="mainSection">
+  <div class="user_task_breakdown">
+    <h1>Your Claimed Tasks:</h1>
+      <% @user_claim.each do |completed_task| %>
+        <li class="task_title"><%= link_to truncate(completed_task.title, :length => 40), task_path(completed_task) %> | Created by: <%= completed_task.owner_find.username %></li>
+      <% end %>
+    </div>
+  </div>
