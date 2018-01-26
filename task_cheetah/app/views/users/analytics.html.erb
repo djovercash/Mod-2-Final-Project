@@ -13,7 +13,7 @@
         </ul><br>
         <ul><h2>Tasks</h2>
           <li><h3>Amount of Tasks Created to Date:</h3> <%= @total_tasks %></li>
-          <li><h3>Newest Task:</h3> <%= @newest_task.title %></li>
+          <li><h3>Newest Task:</h3> <%= truncate(@newest_task.title, :length => 20) %></li>
             <ul>
               <li><h3>Created on:</h3> <%= @newest_task.created_at.strftime("%B %-d, %Y") %></li>
             </ul>

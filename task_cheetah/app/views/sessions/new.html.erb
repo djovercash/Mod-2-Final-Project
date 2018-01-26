@@ -26,7 +26,7 @@
     </div>
     <div class="mainSection_shout_out">
       <h1>Newest Task Created</h1>
-      <h3><%= @newest_task.title %></h3>
+      <h3><%= truncate(@newest_task.title, :length => 20) %></h3>
       <h4>Created by: <%= @newest_task.snake.username %></h4>
     </div>
     <div class="mainSection_shout_out">

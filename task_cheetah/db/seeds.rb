@@ -93,3 +93,7 @@ misc.tasks << dog
 misc.tasks << wine
 misc.tasks << burger
 misc.tasks <<  shoe
+
+100.times do
+  Category.all.sample.tasks << Task.create(title: Faker::Hipster.sentence(3), description: Faker::Hipster.sentence(8), snake_id: User.all.sample.id, address: Faker::Address.country, cheetah_points: rand(10..200))
+end

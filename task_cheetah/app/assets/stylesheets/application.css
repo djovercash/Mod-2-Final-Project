@@ -23,13 +23,6 @@
    background-size: cover;
  }
 
- i img{
-   max-width: 20px;
-   max-height: 20px;
-   object-fit: cover;
-   margin: 0rem 0.5rem;
- }
-
  .container {
    max-width: 960px;
    margin: 0 auto;
@@ -320,6 +313,12 @@
    flex-direction: row;
  }
 
+.footerNav i img{
+   max-width: 20px;
+   max-height: 20px;
+   object-fit: cover;
+   margin: 0rem 0.4rem;
+ }
 /* new task */
 
 .create_task_form {

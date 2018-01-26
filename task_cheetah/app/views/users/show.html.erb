@@ -20,7 +20,7 @@
               <li class="task_title">No Current Tasks Pending</li>
             <% else %>
               <% @user_claim.each do |completed_task| %>
-                <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
+                <li class="task_title"><%= link_to truncate(completed_task.title, :length => 20), task_path(completed_task) %></li>
                   <ul>
                     <li class="task_detail">(Created by: <%= completed_task.owner_find.username %>)</li>
                   </ul>
@@ -38,7 +38,7 @@
               <li class="task_title">No Current Tasks Pending</li>
             <% else %>
               <% @pending_task.each do |completed_task| %>
-                <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %>
+                <li class="task_title"><%= link_to truncate(completed_task.title, :length => 20), task_path(completed_task) %>
                   <% if completed_task.claim_check %>
                     | Claimed by: <%= completed_task.name_check%>
                   <% end %>
@@ -60,7 +60,7 @@
                 <li class="task_title">No Tasks to Review</li>
               <% else %>
                 <% @review_task.each do |completed_task| %>
-                  <li class="task_title"><%= link_to completed_task.title, task_path(completed_task) %></li>
+                  <li class="task_title"><%= link_to truncate(completed_task.title, :length => 20), task_path(completed_task) %></li>
                 <% end %>
               <% end %>
             </ul>
@@ -90,7 +90,7 @@
   </div>
   <div class="mainSection_shout_out">
     <h1>Newest Task Created</h1>
-    <h3><%= @newest_task.title %></h3>
+    <h3><%= truncate(@newest_task.title, :length => 20) %></h3>
     <h4>Created by: <%= @newest_task.snake.username %></h4>
   </div>
   <div class="mainSection_shout_out">
