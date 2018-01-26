@@ -19,7 +19,6 @@ class UsersController < ApplicationController
 
     ##Top Cheetah Points
     @top_cheetah_points = User.top_cheetah_points
-    
   end
 
 ### WHERE A USER - ONCE LOGGED IN SEES THEIR Jobs(CATS - user.cats)
@@ -45,6 +44,10 @@ class UsersController < ApplicationController
 
     #Top Cheetah Rating
     @top_user = User.top_user
+  end
+
+  def pending
+    @pending_task = @user.tasks.select { |task| !task.cheetah }
   end
 
 

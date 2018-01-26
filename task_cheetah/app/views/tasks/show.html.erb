@@ -16,14 +16,14 @@
           <%= f.number_field :rating, value: 0 %><br>
           <%= f.submit "Mark Completed", :class => "btn" %>
         <% end %>
-          <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get, :class => "btn" %>
+          <%= button_to "Edit #{truncate(@task.title, :length => 20)}", edit_task_path(@task), method: :get, :class => "btn" %>
       <% elsif @test && @task.cheetah == true && session[:user_id] != @task.snake_id%>
         <h3>Waiting for Approval</h3>
       <% elsif @test && @task.cheetah == false %>
         <h3>Currently claimed by <%= @task.name_check %></h3>
-        <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get, :class => "btn" %>
+        <%= button_to "Edit #{truncate(@task.title, :length => 20)}", edit_task_path(@task), method: :get, :class => "btn" %>
       <% elsif @task.cheetah == false && @task.snake_id == session[:user_id]  %>
-        <%= button_to "Edit #{@task.title}", edit_task_path(@task), method: :get, :class => "btn" %>
+        <%= button_to "Edit #{truncate(@task.title, :length => 20)}", edit_task_path(@task), method: :get, :class => "btn" %>
       <% else %>
         <%= button_to "Claim this task?", claim_task_path, :class => "btn" %>
       <% end %>
